@@ -20,17 +20,12 @@ namespace OWA_elections
             {
                 order.Add(i);
             }
+            var positions = order.OrderBy(i => random.Next()).ToList();
             for (var i = 0; i < candidates.Count; i++)
             {
-                var indexToChange = random.Next(0, candidates.Count);
-                var tmp = order[i];
-                order[i] = order[indexToChange];
-                order[indexToChange] = tmp;
+                RankList[candidates[i]] = positions[i];
             }
-            for (var i = 0; i < candidates.Count; i++)
-            {
-                RankList[candidates[i]] = order[i];
-            }
+
         }
 
         public Voter(long id, Dictionary<Candidate, long> rankList)
@@ -39,7 +34,7 @@ namespace OWA_elections
             Id = id;
         }
 
-        public static HashSet<Voter> CreateSetOfVoters(IReadOnlyList<Candidate> candidates, long numberOfVoters)
+        public static HashSet<Voter> CreateImpartialCultureSetOfVoters(IReadOnlyList<Candidate> candidates, long numberOfVoters)
         {
             var voters = new HashSet<Voter>();
             var random = new Random();

@@ -1,6 +1,7 @@
 ﻿using System;
 using OWA_elections.Algorithms;
 using OWA_elections.Data.Read;
+using OWA_elections.Data.Write;
 using OWA_elections.OwaOperators;
 using OWA_elections.ValuationTypes;
 
@@ -11,7 +12,7 @@ namespace OWA_elections
         static void Main(string[] args)
         {
             var candidates = Candidate.CreateSetOfCandidates(20);
-            var voters = Voter.CreateSetOfVoters(candidates, 1500);
+            var voters = Voter.CreateImpartialCultureSetOfVoters(candidates, 1500);
 
 //            DataWriter.WriteData(candidates, voters, "d:\\out.txt");
             DataReader.ReadData(out candidates, out voters, "d:\\out.txt");
@@ -19,7 +20,7 @@ namespace OWA_elections
             var valuationType = new BordaCount(candidates.Count);
 
 //            var owaOperator = new BasicOwa(4, 3);
-            var owaOperator = new OneBestOwa(4);
+            var owaOperator = new LinearProgressionOwa(4);
 //            var owaOperator = new GeomethricProgressionOwa(4, 1, 2);
 
             long sizeOfCommitee = owaOperator.OperatorVector.Count;
