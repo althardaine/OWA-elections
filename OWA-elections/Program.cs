@@ -19,7 +19,7 @@ namespace OWA_elections
             var valuationType = new BordaCount(candidates.Count);
 
 //            var owaOperator = new BasicOwa(4, 3);
-            var owaOperator = new ArythmeticProgressionOwa(4, 3 , 1);
+            var owaOperator = new OneBestOwa(4);
 //            var owaOperator = new GeomethricProgressionOwa(4, 1, 2);
 
             long sizeOfCommitee = owaOperator.OperatorVector.Count;

@@ -49,9 +49,12 @@
     <Compile Include="Candidate.cs" />
     <Compile Include="Data\Read\DataReader.cs" />
     <Compile Include="Data\Write\DataWriter.cs" />
-    <Compile Include="OwaOperators\ArythmeticProgressionOwa.cs" />
+    <Compile Include="OwaOperators\LinearProgressionOwa.cs" />
     <Compile Include="OwaOperators\BasicOwa.cs" />
     <Compile Include="OwaOperators\GeomethricProgressionOwa.cs" />
+    <Compile Include="OwaOperators\HalfOnesOwa.cs" />
+    <Compile Include="OwaOperators\HarmonicProgressionOwa.cs" />
+    <Compile Include="OwaOperators\OneBestOwa.cs" />
     <Compile Include="OwaOperators\OwaOperator.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

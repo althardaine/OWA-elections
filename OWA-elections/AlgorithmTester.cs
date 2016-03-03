@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 using System.IO;
+using System.Linq;
 using OWA_elections.Algorithms;
 
 namespace OWA_elections
@@ -37,7 +38,10 @@ namespace OWA_elections
 
             output.WriteLine(Algorithm.ToString());
             output.WriteLine("Best committee:");
-            foreach (var candidate in result)
+
+            var enumerableResult = result.OrderBy(candidate => candidate.Id);
+
+            foreach (var candidate in enumerableResult)
             {
                 output.Write(candidate.Id + " ");
             }
