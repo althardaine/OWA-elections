@@ -12,16 +12,18 @@ namespace OWA_elections
         static void Main(string[] args)
         {
             var candidates = Candidate.CreateSetOfCandidates(20);
-            var voters = Voter.CreateImpartialCultureSetOfVoters(candidates, 1500);
+//            var voters = Voter.CreateImpartialCultureSetOfVoters(candidates, 1500);
+            var voters = Voter.CreateUrnModelSetOfVoters(candidates, 1500);
 
-//            DataWriter.WriteData(candidates, voters, "d:\\out.txt");
+//            DataWriter.WriteData(candidates, voters, "d:\\out2.txt");
             DataReader.ReadData(out candidates, out voters, "d:\\out.txt");
 
             var valuationType = new BordaCount(candidates.Count);
 
 //            var owaOperator = new BasicOwa(4, 3);
             var owaOperator = new LinearProgressionOwa(4);
-//            var owaOperator = new GeomethricProgressionOwa(4, 1, 2);
+//            var owaOperator = new GeomethricProgressionOwa(4, 0.75);
+//            var owaOperator = new HarmonicProgressionOwa(4);
 
             long sizeOfCommitee = owaOperator.OperatorVector.Count;
 

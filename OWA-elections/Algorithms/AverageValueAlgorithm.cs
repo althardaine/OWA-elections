@@ -14,10 +14,8 @@ namespace OWA_elections.Algorithms
         public override HashSet<Candidate> Execute(long sizeOfCommittee, out double resultValue)
         {
             var averageValues = new Dictionary<Candidate, double>();
-            foreach (var candidate in Candidates)
-            {
-                averageValues[candidate] = 0.0;
-            }
+            Candidates.ForEach(candidate => averageValues[candidate] = 0.0);
+
             foreach (var voter in Voters)
             {
                 foreach (var candidate in voter.RankList.Keys)
