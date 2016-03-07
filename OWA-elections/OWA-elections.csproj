@@ -45,6 +45,7 @@
     <Compile Include="Algorithms\AverageValueAlgorithm.cs" />
     <Compile Include="Algorithms\BruteForceAlgorithm.cs" />
     <Compile Include="Algorithms\CollectiveSetsAlgorithmOne.cs" />
+    <Compile Include="Algorithms\CollectiveSetsAlgorithmTwo.cs" />
     <Compile Include="Algorithms\RandomAlgorithm.cs" />
     <Compile Include="AlgorithmTester.cs" />
     <Compile Include="Candidate.cs" />

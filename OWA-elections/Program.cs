@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using OWA_elections.Algorithms;
 using OWA_elections.Data.Read;
 using OWA_elections.Data.Write;
@@ -11,9 +12,9 @@ namespace OWA_elections
     {
         static void Main(string[] args)
         {
-            var candidates = Candidate.CreateSetOfCandidates(20);
+            List<Candidate> candidates;
 //            var voters = Voter.CreateImpartialCultureSetOfVoters(candidates, 1500);
-            var voters = Voter.CreateUrnModelSetOfVoters(candidates, 1500);
+            HashSet<Voter> voters;
 
 //            DataWriter.WriteData(candidates, voters, "d:\\out2.txt");
             DataReader.ReadData(out candidates, out voters, "d:\\out2.txt");
@@ -36,6 +37,8 @@ namespace OWA_elections
             tester.Algorithm = new RandomAlgorithm(voters, candidates, owaOperator, valuationType, 100);
             tester.TestAlgorithm(sizeOfCommitee);
             tester.Algorithm = new CollectiveSetsAlgorithmOne(voters, candidates, owaOperator, valuationType);
+            tester.TestAlgorithm(sizeOfCommitee);
+            tester.Algorithm = new CollectiveSetsAlgorithmTwo(voters, candidates, owaOperator, valuationType, 0.5);
             tester.TestAlgorithm(sizeOfCommitee);
             Console.ReadLine();
         }

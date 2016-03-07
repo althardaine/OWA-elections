@@ -4,9 +4,10 @@ using OWA_elections.ValuationTypes;
 
 namespace OWA_elections.Algorithms
 {
-    class CollectiveSetsAlgorithmOne : Algorithm
+    internal class CollectiveSetsAlgorithmOne : Algorithm
     {
-        public CollectiveSetsAlgorithmOne(HashSet<Voter> voters, List<Candidate> candidates, OwaOperator owaOperator, ValuationType valuationType) 
+        public CollectiveSetsAlgorithmOne(HashSet<Voter> voters, List<Candidate> candidates, OwaOperator owaOperator,
+            ValuationType valuationType)
             : base(voters, candidates, owaOperator, valuationType)
         {
         }
