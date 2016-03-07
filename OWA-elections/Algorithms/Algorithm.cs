@@ -32,7 +32,7 @@ namespace OWA_elections.Algorithms
             var value = Evaluator.Evaluate(result);
             if (!(value > BestResultScore)) return;
             BestResultScore = value;
-            BestResult = result;
+            BestResult = new HashSet<Candidate>(result);
         }
 
     }

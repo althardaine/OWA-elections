@@ -15,7 +15,8 @@ namespace OWA_elections.OwaOperators
 
         public double Apply(List<double> vector)
         {
-            return OperatorVector.Select((t, i) => t*vector[i]).Sum();
+//            return OperatorVector.Select((t, i) => t*vector[i]).Sum();
+            return vector.Select((t, i) => t*OperatorVector[i]).Sum();
         }
     }
 }

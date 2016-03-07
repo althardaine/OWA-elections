@@ -16,14 +16,14 @@ namespace OWA_elections
             var voters = Voter.CreateUrnModelSetOfVoters(candidates, 1500);
 
 //            DataWriter.WriteData(candidates, voters, "d:\\out2.txt");
-            DataReader.ReadData(out candidates, out voters, "d:\\out.txt");
+            DataReader.ReadData(out candidates, out voters, "d:\\out2.txt");
 
             var valuationType = new BordaCount(candidates.Count);
 
 //            var owaOperator = new BasicOwa(4, 3);
-            var owaOperator = new LinearProgressionOwa(4);
+//            var owaOperator = new LinearProgressionOwa(4);
 //            var owaOperator = new GeomethricProgressionOwa(4, 0.75);
-//            var owaOperator = new HarmonicProgressionOwa(4);
+            var owaOperator = new HarmonicProgressionOwa(4);
 
             long sizeOfCommitee = owaOperator.OperatorVector.Count;
 
@@ -34,6 +34,8 @@ namespace OWA_elections
             tester.Algorithm = new AverageValueAlgorithm(voters, candidates, owaOperator, valuationType);
             tester.TestAlgorithm(sizeOfCommitee);
             tester.Algorithm = new RandomAlgorithm(voters, candidates, owaOperator, valuationType, 100);
+            tester.TestAlgorithm(sizeOfCommitee);
+            tester.Algorithm = new CollectiveSetsAlgorithmOne(voters, candidates, owaOperator, valuationType);
             tester.TestAlgorithm(sizeOfCommitee);
             Console.ReadLine();
         }
