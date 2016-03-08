@@ -24,7 +24,7 @@ namespace OWA_elections.Algorithms
             var currentCommittee = new HashSet<Candidate>(Candidates.Take((int) sizeOfCommittee));
             var currentResult = Evaluator.Evaluate(currentCommittee);
 
-            while (_temperature > 1)
+            while (_temperature > 1.0)
             {
                 var committee = ChangeSolution(currentCommittee);
                 var result = CheckResult(committee);
@@ -32,6 +32,7 @@ namespace OWA_elections.Algorithms
                 if (_random.Next(0, 100) < probability)
                 {
                     currentCommittee = committee;
+                    currentResult = result;
                 }
                 _temperature *= 1 - _coolingRate;
             }
@@ -43,26 +44,28 @@ namespace OWA_elections.Algorithms
 
         private static int GetAcceptanceProbability(double energy, double newEnergy, double temperature)
         {
-            if (newEnergy < energy) return 100;
-            return (int) (Math.Exp((energy - newEnergy)/temperature) * 100);
+            if (newEnergy > energy) return 100;
+            return (int) (Math.Exp((newEnergy - energy)/temperature) * 100);
         }
 
         private HashSet<Candidate> ChangeSolution(HashSet<Candidate> committee)
         {
-            var candidateToChange = committee.ToList()[_random.Next(0, committee.Count)];
-            committee.Remove(candidateToChange);
+            var newCommittee = new HashSet<Candidate>(committee);
+            var candidateToChange = newCommittee.ToList()[_random.Next(0, newCommittee.Count)];
+            newCommittee.Remove(candidateToChange);
             var candidateToInsert = Candidates[_random.Next(0, Candidates.Count)];
-            while (committee.Contains(candidateToInsert))
+            while (newCommittee.Contains(candidateToInsert))
             {
                 candidateToInsert = Candidates[_random.Next(0, Candidates.Count)];
             }
-            committee.Add(candidateToInsert);
-            return committee;
+            newCommittee.Add(candidateToInsert);
+            return newCommittee;
         }
 
         public override string ToString()
         {
             return "SimulatedAnnealingAlgorithm";
         }
+
     }
 }
