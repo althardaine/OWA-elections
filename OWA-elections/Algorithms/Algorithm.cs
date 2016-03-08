@@ -27,12 +27,13 @@ namespace OWA_elections.Algorithms
 
         public abstract HashSet<Candidate> Execute(long sizeOfCommittee, out double resultValue);
 
-        protected void CheckResult(HashSet<Candidate> result)
+        protected double CheckResult(HashSet<Candidate> result)
         {
             var value = Evaluator.Evaluate(result);
-            if (!(value > BestResultScore)) return;
+            if (!(value > BestResultScore)) return value;
             BestResultScore = value;
             BestResult = new HashSet<Candidate>(result);
+            return BestResultScore;
         }
 
     }

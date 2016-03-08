@@ -47,6 +47,7 @@
     <Compile Include="Algorithms\CollectiveSetsAlgorithmOne.cs" />
     <Compile Include="Algorithms\CollectiveSetsAlgorithmTwo.cs" />
     <Compile Include="Algorithms\RandomAlgorithm.cs" />
+    <Compile Include="Algorithms\SimulatedAnnealingAlgorithm.cs" />
     <Compile Include="AlgorithmTester.cs" />
     <Compile Include="Candidate.cs" />
     <Compile Include="Data\Read\DataReader.cs" />

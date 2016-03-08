@@ -40,6 +40,8 @@ namespace OWA_elections
             tester.TestAlgorithm(sizeOfCommitee);
             tester.Algorithm = new CollectiveSetsAlgorithmTwo(voters, candidates, owaOperator, valuationType, 0.5);
             tester.TestAlgorithm(sizeOfCommitee);
+            tester.Algorithm = new SimulatedAnnealingAlgorithm(voters, candidates, owaOperator, valuationType, 1000, 0.03);
+            tester.TestAlgorithm(sizeOfCommitee);
             Console.ReadLine();
         }
     }
