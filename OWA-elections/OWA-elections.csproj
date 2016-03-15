@@ -46,6 +46,7 @@
     <Compile Include="Algorithms\BruteForceAlgorithm.cs" />
     <Compile Include="Algorithms\CollectiveSetsAlgorithmOne.cs" />
     <Compile Include="Algorithms\CollectiveSetsAlgorithmTwo.cs" />
+    <Compile Include="Algorithms\GeneticAlgorithm.cs" />
     <Compile Include="Algorithms\RandomAlgorithm.cs" />
     <Compile Include="Algorithms\SimulatedAnnealingAlgorithm.cs" />
     <Compile Include="AlgorithmTester.cs" />

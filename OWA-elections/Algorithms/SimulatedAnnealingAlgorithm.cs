@@ -8,33 +8,34 @@ namespace OWA_elections.Algorithms
 {
     internal class SimulatedAnnealingAlgorithm : Algorithm
     {
-        private double _temperature;
+        private readonly double _initialTemperature;
         private readonly double _coolingRate;
         private readonly Random _random = new Random();
 
         public SimulatedAnnealingAlgorithm(HashSet<Voter> voters, List<Candidate> candidates, OwaOperator owaOperator,
-            ValuationType valuationType, int initialTemperature, double coolingRate) : base(voters, candidates, owaOperator, valuationType)
+            ValuationType valuationType, int initialInitialTemperature, double coolingRate) : base(voters, candidates, owaOperator, valuationType)
         {
-            _temperature = initialTemperature;
+            _initialTemperature = initialInitialTemperature;
             _coolingRate = coolingRate;
         }
 
         public override HashSet<Candidate> Execute(long sizeOfCommittee, out double resultValue)
         {
+            var temperature = _initialTemperature;
             var currentCommittee = new HashSet<Candidate>(Candidates.Take((int) sizeOfCommittee));
             var currentResult = Evaluator.Evaluate(currentCommittee);
 
-            while (_temperature > 1.0)
+            while (temperature > 1.0)
             {
                 var committee = ChangeSolution(currentCommittee);
                 var result = CheckResult(committee);
-                var probability = GetAcceptanceProbability(currentResult, result, _temperature);
+                var probability = GetAcceptanceProbability(currentResult, result, temperature);
                 if (_random.Next(0, 100) < probability)
                 {
                     currentCommittee = committee;
                     currentResult = result;
                 }
-                _temperature *= 1 - _coolingRate;
+                temperature *= 1 - _coolingRate;
             }
 
             CheckResult(currentCommittee);
@@ -48,7 +49,7 @@ namespace OWA_elections.Algorithms
             return (int) (Math.Exp((newEnergy - energy)/temperature) * 100);
         }
 
-        private HashSet<Candidate> ChangeSolution(HashSet<Candidate> committee)
+        private HashSet<Candidate> ChangeSolution(IEnumerable<Candidate> committee)
         {
             var newCommittee = new HashSet<Candidate>(committee);
             var candidateToChange = newCommittee.ToList()[_random.Next(0, newCommittee.Count)];

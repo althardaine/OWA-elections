@@ -33,15 +33,17 @@ namespace OWA_elections
 
             var tester = new AlgorithmTester(algoritm);
 //            tester.TestAlgorithm(sizeOfCommitee);
-            tester.Algorithm = new AverageValueAlgorithm(voters, candidates, owaOperator, valuationType);
-            tester.TestAlgorithm(sizeOfCommitee);
-            tester.Algorithm = new RandomAlgorithm(voters, candidates, owaOperator, valuationType, 100);
-            tester.TestAlgorithm(sizeOfCommitee);
-            tester.Algorithm = new CollectiveSetsAlgorithmOne(voters, candidates, owaOperator, valuationType);
-            tester.TestAlgorithm(sizeOfCommitee);
-            tester.Algorithm = new CollectiveSetsAlgorithmTwo(voters, candidates, owaOperator, valuationType, 0.5);
-            tester.TestAlgorithm(sizeOfCommitee);
-            tester.Algorithm = new SimulatedAnnealingAlgorithm(voters, candidates, owaOperator, valuationType, 1000, 0.03);
+//            tester.Algorithm = new AverageValueAlgorithm(voters, candidates, owaOperator, valuationType);
+//            tester.TestAlgorithm(sizeOfCommitee);
+//            tester.Algorithm = new RandomAlgorithm(voters, candidates, owaOperator, valuationType, 100);
+//            tester.TestAlgorithm(sizeOfCommitee);
+//            tester.Algorithm = new CollectiveSetsAlgorithmOne(voters, candidates, owaOperator, valuationType);
+//            tester.TestAlgorithm(sizeOfCommitee);
+//            tester.Algorithm = new CollectiveSetsAlgorithmTwo(voters, candidates, owaOperator, valuationType, 0.5);
+//            tester.TestAlgorithm(sizeOfCommitee);
+//            tester.Algorithm = new SimulatedAnnealingAlgorithm(voters, candidates, owaOperator, valuationType, 10000, 0.03);
+//            tester.TestAlgorithm(sizeOfCommitee);
+            tester.Algorithm = new GeneticAlgorithm(voters, candidates, owaOperator, valuationType);
             tester.TestAlgorithm(sizeOfCommitee);
             Console.ReadLine();
         }
