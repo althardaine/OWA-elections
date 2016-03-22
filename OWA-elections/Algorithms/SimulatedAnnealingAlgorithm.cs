@@ -10,7 +10,7 @@ namespace OWA_elections.Algorithms
     {
         private readonly double _initialTemperature;
         private readonly double _coolingRate;
-        private readonly Random _random = new Random();
+        private static readonly Random Random = new Random();
 
         public SimulatedAnnealingAlgorithm(HashSet<Voter> voters, List<Candidate> candidates, OwaOperator owaOperator,
             ValuationType valuationType, int initialInitialTemperature, double coolingRate) : base(voters, candidates, owaOperator, valuationType)
@@ -30,7 +30,7 @@ namespace OWA_elections.Algorithms
                 var committee = ChangeSolution(currentCommittee);
                 var result = CheckResult(committee);
                 var probability = GetAcceptanceProbability(currentResult, result, temperature);
-                if (_random.Next(0, 100) < probability)
+                if (Random.Next(0, 100) < probability)
                 {
                     currentCommittee = committee;
                     currentResult = result;
@@ -52,12 +52,12 @@ namespace OWA_elections.Algorithms
         private HashSet<Candidate> ChangeSolution(IEnumerable<Candidate> committee)
         {
             var newCommittee = new HashSet<Candidate>(committee);
-            var candidateToChange = newCommittee.ToList()[_random.Next(0, newCommittee.Count)];
+            var candidateToChange = newCommittee.ToList()[Random.Next(0, newCommittee.Count)];
             newCommittee.Remove(candidateToChange);
-            var candidateToInsert = Candidates[_random.Next(0, Candidates.Count)];
+            var candidateToInsert = Candidates[Random.Next(0, Candidates.Count)];
             while (newCommittee.Contains(candidateToInsert))
             {
-                candidateToInsert = Candidates[_random.Next(0, Candidates.Count)];
+                candidateToInsert = Candidates[Random.Next(0, Candidates.Count)];
             }
             newCommittee.Add(candidateToInsert);
             return newCommittee;

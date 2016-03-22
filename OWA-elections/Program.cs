@@ -12,13 +12,13 @@ namespace OWA_elections
     {
         static void Main(string[] args)
         {
-            var candidates = Candidate.CreateSetOfCandidates(50);
-            var voters = Voter.CreateUrnModelSetOfVoters(candidates, 2000);
+            var candidates = Candidate.CreateSetOfCandidates(500);
+            var voters = Voter.CreateUrnModelSetOfVoters(candidates, 500);
 //            List<Candidate> candidates;
 //            HashSet<Voter> voters;
 
-//            DataWriter.WriteData(candidates, voters, "d:\\out2.txt");
-//            DataReader.ReadData(out candidates, out voters, "d:\\out2.txt");
+//            DataWriter.WriteData(candidates, voters, "d:\\out3.txt");
+            DataReader.ReadData(out candidates, out voters, "d:\\out3.txt");
 
             var valuationType = new BordaCount(candidates.Count);
 
@@ -33,17 +33,17 @@ namespace OWA_elections
 
             var tester = new AlgorithmTester(algoritm);
 //            tester.TestAlgorithm(sizeOfCommitee);
-//            tester.Algorithm = new AverageValueAlgorithm(voters, candidates, owaOperator, valuationType);
-//            tester.TestAlgorithm(sizeOfCommitee);
-//            tester.Algorithm = new RandomAlgorithm(voters, candidates, owaOperator, valuationType, 100);
-//            tester.TestAlgorithm(sizeOfCommitee);
-//            tester.Algorithm = new CollectiveSetsAlgorithmOne(voters, candidates, owaOperator, valuationType);
-//            tester.TestAlgorithm(sizeOfCommitee);
-//            tester.Algorithm = new CollectiveSetsAlgorithmTwo(voters, candidates, owaOperator, valuationType, 0.5);
-//            tester.TestAlgorithm(sizeOfCommitee);
-//            tester.Algorithm = new SimulatedAnnealingAlgorithm(voters, candidates, owaOperator, valuationType, 10000, 0.03);
-//            tester.TestAlgorithm(sizeOfCommitee);
-            tester.Algorithm = new GeneticAlgorithm(voters, candidates, owaOperator, valuationType);
+            tester.Algorithm = new AverageValueAlgorithm(voters, candidates, owaOperator, valuationType);
+            tester.TestAlgorithm(sizeOfCommitee);
+            tester.Algorithm = new RandomAlgorithm(voters, candidates, owaOperator, valuationType, 100);
+            tester.TestAlgorithm(sizeOfCommitee);
+            tester.Algorithm = new CollectiveSetsAlgorithmOne(voters, candidates, owaOperator, valuationType);
+            tester.TestAlgorithm(sizeOfCommitee);
+            tester.Algorithm = new CollectiveSetsAlgorithmTwo(voters, candidates, owaOperator, valuationType, 0.5);
+            tester.TestAlgorithm(sizeOfCommitee);
+            tester.Algorithm = new SimulatedAnnealingAlgorithm(voters, candidates, owaOperator, valuationType, 10000, 0.02);
+            tester.TestAlgorithm(sizeOfCommitee);
+            tester.Algorithm = new GeneticAlgorithm(voters, candidates, owaOperator, valuationType, 24, 200);
             tester.TestAlgorithm(sizeOfCommitee);
             Console.ReadLine();
         }
