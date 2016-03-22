@@ -12,17 +12,22 @@ namespace OWA_elections
     {
         static void Main(string[] args)
         {
-            var candidates = Candidate.CreateSetOfCandidates(500);
-            var voters = Voter.CreateUrnModelSetOfVoters(candidates, 500);
+            var candidates = Candidate.CreateSetOfCandidates(10);
+            var voters = Voter.CreateSquareDistributionSetOfVoters(candidates);
+
+            foreach (var voter in voters)
+            {
+                Console.WriteLine(voter.ToString());
+            }
 //            List<Candidate> candidates;
 //            HashSet<Voter> voters;
 
 //            DataWriter.WriteData(candidates, voters, "d:\\out3.txt");
-            DataReader.ReadData(out candidates, out voters, "d:\\out3.txt");
+//            DataReader.ReadData(out candidates, out voters, "d:\\out3.txt");
 
             var valuationType = new BordaCount(candidates.Count);
 
-            var owaOperator = new BasicOwa(20, 3);
+            var owaOperator = new BasicOwa(3, 3);
 //            var owaOperator = new LinearProgressionOwa(4);
 //            var owaOperator = new GeomethricProgressionOwa(4, 0.75);
 //            var owaOperator = new HarmonicProgressionOwa(10);

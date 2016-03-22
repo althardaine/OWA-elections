@@ -50,6 +50,32 @@ namespace OWA_elections
             return voters;
         }
 
+        public static HashSet<Voter> CreateSquareDistributionSetOfVoters(IReadOnlyList<Candidate> candidates)
+        {
+            var voters = new HashSet<Voter>();
+            var id = 0;
+            foreach (var candidate in candidates)
+            {
+                var distanceMap = new Dictionary<Candidate, double>();
+                foreach (var c in candidates)
+                {
+                    var distance = Math.Sqrt(Math.Pow(candidate.X - c.X, 2) + Math.Pow(candidate.Y - c.Y, 2));
+                    distanceMap[c] = distance;
+                }
+                var sorted = (from entry in distanceMap orderby entry.Value ascending select entry).ToList();
+                var rankList = new Dictionary<Candidate, long>();
+                var i = 0;
+                sorted.ForEach(pair =>
+                {
+                    rankList[pair.Key] = i;
+                    i += 1;
+                });
+                voters.Add(new Voter(id, rankList));
+                id += 1;
+            }
+            return voters;
+        }
+
         public static HashSet<Voter> CreateUrnModelSetOfVoters(IReadOnlyList<Candidate> candidates, long numberOfvoters)
         {
             var random = new Random();
