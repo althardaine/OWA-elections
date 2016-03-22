@@ -14,7 +14,7 @@ namespace OWA_elections.Data.Write
                 file.WriteLine(candidates.Count);
                 foreach (var candidate in candidates)
                 {
-                    file.WriteLine(candidate.Id + "," + candidate.Name);
+                    file.WriteLine("{0};{1};{2};{3}", candidate.Id, candidate.Name, candidate.X, candidate.Y);
                 }
                 file.WriteLine(voters.Count);
                 foreach (var sortedRankList in voters.Select(voter => (from entry in voter.RankList orderby entry.Value ascending select entry)))

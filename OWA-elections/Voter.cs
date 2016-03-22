@@ -39,6 +39,11 @@ namespace OWA_elections
             Id = id;
         }
 
+        public static HashSet<Voter> CreateImpartialCultureSetOfVoters(IReadOnlyList<Candidate> candidates)
+        {
+            return CreateImpartialCultureSetOfVoters(candidates, candidates.Count);
+        }  
+
         public static HashSet<Voter> CreateImpartialCultureSetOfVoters(IReadOnlyList<Candidate> candidates, long numberOfVoters)
         {
             var voters = new HashSet<Voter>();

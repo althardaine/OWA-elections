@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 
@@ -19,9 +20,19 @@ namespace OWA_elections.Data.Read
                 {
                     var data = file.ReadLine();
                     if (data == null) throw new InvalidDataException();
-                    var splitted = data.Split(',');
-                    if (splitted.Length != 2) throw new InvalidDataException();
-                    candidates.Add(new Candidate(long.Parse(splitted[0]), splitted[1]));
+                    var splitted = data.Split(';');
+                    if (splitted.Length == 2)
+                    {
+                        candidates.Add(new Candidate(long.Parse(splitted[0]), splitted[1]));
+                    }
+                    else if (splitted.Length == 4)
+                    {
+                        candidates.Add(new Candidate(long.Parse(splitted[0]), splitted[1], double.Parse(splitted[2]), double.Parse(splitted[3])));
+                    }
+                    else
+                    {
+                        throw new FormatException();
+                    }
                 }
 
                 voters = new HashSet<Voter>();
