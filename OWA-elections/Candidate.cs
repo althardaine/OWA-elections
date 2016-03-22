@@ -29,5 +29,9 @@ namespace OWA_elections
             return candidates;
         }
 
+        public override string ToString()
+        {
+            return Id.ToString();
+        }
     }
 }

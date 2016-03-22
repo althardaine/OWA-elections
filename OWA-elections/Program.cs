@@ -22,10 +22,10 @@ namespace OWA_elections
 
             var valuationType = new BordaCount(candidates.Count);
 
-//            var owaOperator = new BasicOwa(4, 3);
+            var owaOperator = new BasicOwa(20, 3);
 //            var owaOperator = new LinearProgressionOwa(4);
 //            var owaOperator = new GeomethricProgressionOwa(4, 0.75);
-            var owaOperator = new HarmonicProgressionOwa(10);
+//            var owaOperator = new HarmonicProgressionOwa(10);
 
             long sizeOfCommitee = owaOperator.OperatorVector.Count;
 
@@ -34,8 +34,8 @@ namespace OWA_elections
             var tester = new AlgorithmTester(algoritm);
 //            tester.TestAlgorithm(sizeOfCommitee);
             tester.Algorithm = new AverageValueAlgorithm(voters, candidates, owaOperator, valuationType);
-            tester.TestAlgorithm(sizeOfCommitee);
-            tester.Algorithm = new RandomAlgorithm(voters, candidates, owaOperator, valuationType, 100);
+            tester.TestAlgorithm(sizeOfCommitee, Console.Out, 3);
+            tester.Algorithm = new RandomAlgorithm(voters, candidates, owaOperator, valuationType, 500);
             tester.TestAlgorithm(sizeOfCommitee);
             tester.Algorithm = new CollectiveSetsAlgorithmOne(voters, candidates, owaOperator, valuationType);
             tester.TestAlgorithm(sizeOfCommitee);

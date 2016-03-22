@@ -26,6 +26,28 @@ namespace OWA_elections
             TestAlgorithm(sizeOfCommittee, new StreamWriter(outputPath));
         }
 
+        public void TestAlgorithm(long sizeOfCommittee, TextWriter output, int numberOfTries)
+        {
+            output.WriteLine(Algorithm.ToString());
+            for (var i = 0; i < numberOfTries; i++)
+            {
+                var watch = Stopwatch.StartNew();
+
+                double resultValue;
+                var result = Algorithm.Execute(sizeOfCommittee, out resultValue);
+
+                watch.Stop();
+                var elapsedMilliseconds = watch.ElapsedMilliseconds;
+
+
+                var enumerableResult = result.OrderBy(candidate => candidate.Id);
+
+                Console.Write(string.Join(",", enumerableResult));
+                output.WriteLine(";{0};{1}", resultValue, elapsedMilliseconds);
+            }
+            output.Flush();
+        }
+
         private void TestAlgorithm(long sizeOfCommittee, TextWriter output)
         {
             double resultValue;
