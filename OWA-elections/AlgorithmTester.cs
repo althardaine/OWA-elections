@@ -31,6 +31,7 @@ namespace OWA_elections
             output.WriteLine(Algorithm.ToString());
             for (var i = 0; i < numberOfTries; i++)
             {
+                Algorithm.ClearResults();
                 var watch = Stopwatch.StartNew();
 
                 double resultValue;
@@ -50,6 +51,7 @@ namespace OWA_elections
 
         private void TestAlgorithm(long sizeOfCommittee, TextWriter output)
         {
+            Algorithm.ClearResults();
             double resultValue;
             var watch = Stopwatch.StartNew();
 

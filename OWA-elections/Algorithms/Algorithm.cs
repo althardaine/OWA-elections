@@ -25,6 +25,12 @@ namespace OWA_elections.Algorithms
             Evaluator =  new ResultEvaluator(voters, candidates, owaOperator, valuationType);
         }
 
+        public void ClearResults()
+        {
+            BestResultScore = 0;
+            BestResult = null;
+        }
+
         public abstract HashSet<Candidate> Execute(long sizeOfCommittee, out double resultValue);
 
         protected double CheckResult(HashSet<Candidate> result)

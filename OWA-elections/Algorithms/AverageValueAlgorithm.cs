@@ -59,6 +59,7 @@ namespace OWA_elections.Algorithms
                 {
                     listOfPossibleValues.Add(owaVector[i] * value);
                 }
+                return listOfPossibleValues.Average();
             }
             // other cases
             listOfPossibleValues.AddRange(owaVector.Select(t => t*value));
